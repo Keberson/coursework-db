@@ -1,0 +1,1 @@
+select * from $input_table where name='$input_name'
