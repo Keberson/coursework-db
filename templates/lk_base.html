@@ -17,10 +17,10 @@
       }
     </style>
 </head>
-<body class="h-100 m-0 p-0 wrapper bg-light" style="display:flex; flex-direction: column; justify-content: center">
+<body class="h-100 m-0 p-0 wrapper bg-light position-relative" style="display:flex; flex-direction: column; justify-content: center">
     <nav class="navbar navbar-dark bg-dark fixed-top">
       <div class="container-md">
-        <div class="navbar-brand" href="#">Домашняя страница</div>
+        <div class="navbar-brand" href="#">Панель управления</div>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -54,5 +54,6 @@
     </nav>
     {% block lk_home %}{% endblock %}
     {% block lk_queries %}{% endblock %}
+    {% block lk_result %}{% endblock %}
 </body>
 </html>

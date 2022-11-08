@@ -4,7 +4,6 @@ from flask import Blueprint, request, render_template, current_app
 from db_work import select
 from sql_provider import SQLProvider
 
-
 blueprint_query = Blueprint('bp_query', __name__, template_folder='templates')
 
 provider = SQLProvider(os.path.join(os.path.dirname(__file__), 'sql'))
@@ -23,6 +22,7 @@ def queries():
             _sql = provider.get('template.sql', input_table=input_type, input_name=input_name)
             client_result, schema = select(current_app.config['dbconfig'], _sql)
 
-            return render_template('db_result.html', schema=schema, result=client_result)
+            return render_template('lk_result.html', schema=schema, result=client_result, active_page='queries',
+                                   table=input_type)
         else:
             return "Repeat input"
