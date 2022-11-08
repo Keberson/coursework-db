@@ -13,10 +13,10 @@ app.config['dbconfig'] = db_config
 
 @app.route('/')
 def index():
-    return render_template('start_request.html')
+    return render_template('lk_home.html', active_page='home')
 
 
-@app.route('/goodbye')
+@app.route('/exit')
 def goodbye():
     return 'Bye'
 

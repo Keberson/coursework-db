@@ -15,7 +15,7 @@ def queries():
     input_type = request.args.to_dict()['base']
 
     if request.method == 'GET':
-        return render_template('form.html')
+        return render_template('lk_queries.html', active_page='queries', table=input_type)
     else:
         input_name = request.form.get('input_name')
 

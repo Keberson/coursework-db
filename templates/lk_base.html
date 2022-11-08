@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <title>Панель управления</title>
+    <!-- CSS only -->
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" rel="stylesheet">
+    <!-- JavaScript Bundle with Popper -->
+    <script crossorigin="anonymous"
+            integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+      .wrapper {
+        background: url(https://lh3.googleusercontent.com/drive-viewer/AJc5JmTn2dT4fMiCp60jaN4Pt0LA_1hCDa8nLCq1kw49e_hbBjq5xJoK2OFa7PTUyithlF2cWMBT96o=w1860-h907) no-repeat;
+        background-size: cover;
+      }
+    </style>
+</head>
+<body class="h-100 m-0 p-0 wrapper bg-light" style="display:flex; flex-direction: column; justify-content: center">
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+      <div class="container-md">
+        <div class="navbar-brand" href="#">Домашняя страница</div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Панель управления</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link {% if active_page == 'home' %} active {% endif %}" aria-current="page" href="/">Домашняя страница</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle {% if active_page == 'queries' %} active {% endif %}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Запросы
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href={{url_for('bp_query.queries', base='client')}}>Найти данные в Клиентах</a></li>
+                  <li><a class="dropdown-item" href={{url_for('bp_query.queries', base='detail')}}>Найти данные в Деталях</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="#">Сложные запросы</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    {% block lk_home %}{% endblock %}
+    {% block lk_queries %}{% endblock %}
+</body>
+</html>

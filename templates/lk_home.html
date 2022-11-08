@@ -1,0 +1,31 @@
+{% extends 'lk_base.html' %}
+
+{% block lk_home %}
+  <div class="card container" style="width: 20rem">
+    <div class="card-body text-center h5">
+      Добро пожаловать, {user}!
+    </div>
+  </div>
+  <div class="p-4 card mt-5 container text-center" style="width: 20rem">
+    <h5 class="display-6">Меню</h5>
+    <ul class="mt-3 pt-2 pb-2 list-group list-group-flush">
+      <li class="list-group-item border-0">
+        <a href="/" class="list-group-item list-group-item-action active">Домашняя страница</a>
+      </li>
+      <li class="list-group-item dropdown-center border-0">
+        <a class="list-group-item list-group-item-action dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Запросы
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href={{url_for('bp_query.queries', base='client')}}>Найти данные в Клиентах</a></li>
+          <li><a class="dropdown-item" href={{url_for('bp_query.queries', base='detail')}}>Найти данные в Деталях</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="#">Сложные запросы</a></li>
+        </ul>
+       </li>
+    </ul>
+    <a href="/exit" type="button" class="mt-3 btn btn-danger">Выйти</a>
+  </div>
+{% endblock %}
