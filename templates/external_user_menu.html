@@ -1,0 +1,12 @@
+{% extends 'lk_base.html' %}
+
+{% block external_user %}
+
+<div class="card container" style="width: 20rem">
+    <div class="card-body text-center h5">
+        Добро пожаловать, {{ user }}!
+        <a href="/exit" type="button" class="mt-3 btn btn-danger">Выйти</a>
+    </div>
+</div>
+
+{% endblock %}

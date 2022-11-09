@@ -1,0 +1,12 @@
+{
+  "director": [
+    "bp_query",
+    "bp_reports"
+  ],
+  "manager": [
+    "bp_details.edit"
+  ],
+  "buyer": [
+    "bp_details.list"
+  ]
+}

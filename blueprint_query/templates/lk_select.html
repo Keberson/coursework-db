@@ -1,7 +1,7 @@
 {% extends 'lk_base.html' %}
 
 {% block lk_select %}
-<form class="p-4 card mt-5 container text-center gap-4" style="width: 55rem; align-items: center" method="post">
+<div class="p-4 card mt-5 container text-center gap-4" style="width: 55rem; align-items: center" method="post">
     <h5 class="display-6">
         Запросы из таблиц
     </h5>
@@ -18,6 +18,11 @@
             </select>
             <button class="btn btn-outline-secondary" type="submit">Поиск</button>
         </div>
+        {% if message != '' %}
+        <div class="alert alert-danger mt-3" role="alert">
+            {{ message }}
+        </div>
+        {% endif %}
     </form>
-</form>
+</div>
 {% endblock %}

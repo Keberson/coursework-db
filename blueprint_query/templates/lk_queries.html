@@ -12,5 +12,10 @@
     </h5>
     <input name="input_name" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
     <input type="submit" value="Поиск" class="btn btn-success" style="width: 15rem">
+    {% if message != '' %}
+    <div class="alert alert-danger w-100" role="alert">
+        {{ message }}
+    </div>
+    {% endif %}
 </form>
 {% endblock %}
