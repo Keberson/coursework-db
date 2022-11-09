@@ -1,0 +1,1 @@
+SELECT city, COUNT(*) AS number FROM client GROUP BY city

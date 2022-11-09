@@ -1,0 +1,1 @@
+SELECT id_client, SUM(cost) AS 'Summary cost' FROM document WHERE `id_client` = 5 AND MONTH(date_of_purchase) = 3 AND YEAR(date_of_purchase) = 2020

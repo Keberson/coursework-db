@@ -44,7 +44,7 @@
                   <li>
                     <hr class="dropdown-divider">
                   </li>
-                  <li><a class="dropdown-item" href="#">Сложные запросы</a></li>
+                  <li><a class="dropdown-item" href={{url_for('bp_query.select_query')}}>Сложные запросы</a></li>
                 </ul>
               </li>
             </ul>
@@ -54,6 +54,7 @@
     </nav>
     {% block lk_home %}{% endblock %}
     {% block lk_queries %}{% endblock %}
+    {% block lk_select %}{% endblock %}
     {% block lk_result %}{% endblock %}
 </body>
 </html>

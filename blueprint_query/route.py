@@ -1,6 +1,6 @@
 import os.path
 
-from flask import Blueprint, request, render_template, current_app
+from flask import Blueprint, request, render_template, current_app, url_for
 from db_work import select
 from sql_provider import SQLProvider
 
@@ -23,6 +23,23 @@ def queries():
             client_result, schema = select(current_app.config['dbconfig'], _sql)
 
             return render_template('lk_result.html', schema=schema, result=client_result, active_page='queries',
-                                   table=input_type)
+                                   url=url_for('bp_query.queries', base=input_type))
+        else:
+            return "Repeat input"
+
+
+@blueprint_query.route('/select', methods=['GET', 'POST'])
+def select_query():
+    if request.method == 'GET':
+        return render_template('lk_select.html', active_page='queries')
+    else:
+        input_select = request.form.get('input_select')
+
+        if input_select:
+            _sql = provider.get(f'easy_request_{input_select}.sql')
+            client_result, schema = select(current_app.config['dbconfig'], _sql)
+
+            return render_template('lk_result.html', schema=schema, result=client_result, active_page='queries',
+                                   url=url_for('bp_query.select_query'))
         else:
             return "Repeat input"

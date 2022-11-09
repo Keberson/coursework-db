@@ -1,0 +1,1 @@
+SELECT * FROM client WHERE date_of_conclusion BETWEEN '2020-03-01' AND '2020-06-30'

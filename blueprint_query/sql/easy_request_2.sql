@@ -1,0 +1,1 @@
+SELECT * FROM client WHERE CURRENT_DATE - date_of_conclusion <= 5

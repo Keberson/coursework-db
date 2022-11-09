@@ -1,0 +1,1 @@
+SELECT name, MIN(price) AS min_price FROM detail GROUP BY name
