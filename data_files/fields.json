@@ -1,0 +1,21 @@
+{
+  "id_client": "ID клиента",
+  "name": "Название",
+  "city": "Город",
+  "date_of_conclusion": "Дата заключения контракта",
+  "phone": "Номер телефона",
+  "id_detail": "ID детали",
+  "material": "Материал",
+  "weight": "Вес",
+  "price": "Цена за штуку",
+  "quantity_available": "Доступно",
+  "date_update": "Дата обновления",
+  "number": "Количество",
+  "Summary cost": "Сумма",
+  "min_price": "Минимальная цена",
+  "id_rep": "ID отчета",
+  "id_det": "ID детали",
+  "numb_det": "Количество деталей",
+  "date_from": "Начало периода",
+  "date_to": "Конец периода"
+}

@@ -1,6 +1,6 @@
 {% extends 'lk_base.html' %}
 
-{% block lk_select %}
+{% block content %}
 <div class="p-4 card mt-5 container text-center gap-4" style="width: 55rem; align-items: center" method="post">
     <h5 class="display-6">
         Запросы из таблиц
@@ -9,12 +9,9 @@
         <div class="input-group">
             <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon" name="input_select">
                 <option selected disabled>Выбрать запрос...</option>
-                <option value="1">Показать все сведения о покупателях, заключивших договора за период с марта по июль 2020 года</option>
-                <option value="2">Показать все сведения о покупателях, заключивших договора за последние 5 дней</option>
-                <option value="3">Показать всех покупателей, у которых номера телефонов имеют префикс 812</option>
-                <option value="4">Показать, сколько покупателей находится в каждом городе</option>
-                <option value="5">Показать минимальную цену детали каждого типа</option>
-                <option value="6">Показать общую стоимость деталей, купленных покупателем XXX в марте 2020 года</option>
+                {% for i in select_list %}
+                    <option value="{{ i }}">{{ select_list[i] }}</option>
+                {% endfor %}
             </select>
             <button class="btn btn-outline-secondary" type="submit">Поиск</button>
         </div>

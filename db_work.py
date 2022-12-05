@@ -34,3 +34,16 @@ def select_dict(dbconfig: dict, _sql: str):
             result.append(dict(zip(schema, row)))
 
         return result
+
+
+def call_proc(dbconfig: dict, proc_name: str, *args):
+    with DBConnection(dbconfig) as cursor:
+        if cursor is None:
+            raise ValueError('Курсор не создан')
+
+        param_list = []
+        for arg in args:
+            param_list.append(arg)
+
+        res = cursor.callproc(proc_name, param_list)
+    return res

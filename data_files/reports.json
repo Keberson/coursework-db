@@ -1,0 +1,10 @@
+[
+  {
+    "rep_name": "Отчет о продаже деталей за период",
+    "rep_id": "1",
+    "url": {
+      "create_rep": "bp_report.create_rep1",
+      "view_rep": "bp_report.view_rep1"
+    }
+  }
+]

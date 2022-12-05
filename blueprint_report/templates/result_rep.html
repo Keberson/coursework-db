@@ -1,0 +1,34 @@
+{% extends 'lk_base.html' %}
+
+{% block content %}
+<div class="p-4 card mt-5 container text-center col-8" style="height: 80%; overflow-y: auto">
+    <h2 class="display-6">Меню отчетов</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                {% for column in schema %}
+                <th scope="col">{{column}}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for line in result %}
+            <tr>
+                <th scope="row">{{ line[0] }}</th>
+                {% for i in range(1, line|length) %}
+                <td>{{ line[i] }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="container mt-3 d-flex flex-column gap-2">
+        {% if message %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+        {% endif %}
+    </div>
+    <a class="mt-auto" href={{ url_for('bp_report.start_report') }}> Вернуться в главное меню</a>
+</div>
+{% endblock %}

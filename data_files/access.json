@@ -1,7 +1,7 @@
 {
   "director": [
     "bp_query",
-    "bp_reports"
+    "bp_report"
   ],
   "manager": [
     "bp_details.edit"

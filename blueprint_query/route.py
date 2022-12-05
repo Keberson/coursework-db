@@ -17,7 +17,7 @@ def queries():
     input_type = request.args.to_dict()['base']
 
     if request.method == 'GET':
-        return render_template('lk_queries.html', active_page='queries', table=input_type)
+        return render_template('lk_queries.html', active_page='queries', table=input_type, message='')
     else:
         input_name = request.form.get('input_name')
 
@@ -25,8 +25,10 @@ def queries():
             _sql = provider.get('template.sql', input_table=input_type, input_name=input_name)
             client_result, schema = select(current_app.config['db_config'], _sql)
 
-            return render_template('lk_result.html', schema=schema, result=client_result, active_page='queries',
-                                   url=url_for('bp_query.queries', base=input_type))
+            return render_template('lk_result.html', schema=[current_app.config['fields_name'][i] for i in schema],
+                                   result=client_result, active_page='queries',
+                                   url=url_for('bp_query.queries', base=input_type),
+                                   title=f'Результат поиска \"{input_name}\"')
         else:
             return render_template('lk_queries.html', active_page='queries', table=input_type, message='Повторите ввод')
 
@@ -36,7 +38,8 @@ def queries():
 @group_required
 def select_query():
     if request.method == 'GET':
-        return render_template('lk_select.html', active_page='queries', message='')
+        return render_template('lk_select.html', select_list=current_app.config['queries_list'],
+                               active_page='queries', message='')
     else:
         input_select = request.form.get('input_select')
 
@@ -44,7 +47,10 @@ def select_query():
             _sql = provider.get(f'easy_request_{input_select}.sql')
             client_result, schema = select(current_app.config['db_config'], _sql)
 
-            return render_template('lk_result.html', schema=schema, result=client_result, active_page='queries',
-                                   url=url_for('bp_query.select_query'))
+            return render_template('lk_result.html', schema=[current_app.config['fields_name'][i] for i in schema],
+                                   result=client_result, active_page='queries',
+                                   url=url_for('bp_query.select_query'),
+                                   title=current_app.config["queries_list"][input_select])
         else:
-            return render_template('lk_select.html', active_page='queries', message='Повторите ввод')
+            return render_template('lk_select.html', select_list=current_app.config['queries_list'],
+                                   active_page='queries', message='Повторите ввод')

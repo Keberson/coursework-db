@@ -39,23 +39,22 @@
                   Запросы
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href={{url_for('bp_query.queries', base='client')}}>Найти данные в Клиентах</a></li>
-                  <li><a class="dropdown-item" href={{url_for('bp_query.queries', base='detail')}}>Найти данные в Деталях</a></li>
+                  <li><a class="dropdown-item" href={{ url_for('bp_query.queries', base='client') }}>Найти данные в Клиентах</a></li>
+                  <li><a class="dropdown-item" href={{ url_for('bp_query.queries', base='detail')}}>Найти данные в Деталях</a></li>
                   <li>
                     <hr class="dropdown-divider">
                   </li>
-                  <li><a class="dropdown-item" href={{url_for('bp_query.select_query')}}>Сложные запросы</a></li>
+                  <li><a class="dropdown-item" href={{ url_for('bp_query.select_query') }}>Сложные запросы</a></li>
                 </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% if active_page == 'reports' %} active {% endif %}" aria-current="page" href={{ url_for('bp_report.start_report') }}>Отчеты</a>
               </li>
             </ul>
           </div>
         </div>
       </div>
     </nav>
-    {% block lk_home %}{% endblock %}
-    {% block lk_queries %}{% endblock %}
-    {% block lk_select %}{% endblock %}
-    {% block lk_result %}{% endblock %}
-    {% block external_user %}{% endblock %}
+    {% block content %}{% endblock %}
 </body>
 </html>
