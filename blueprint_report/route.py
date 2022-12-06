@@ -35,8 +35,6 @@ def create_rep1():
         rep_start = request.form.get('input_start')
         rep_end = request.form.get('input_end')
 
-        print(url_for('bp_report.view_rep1', id_det=id_det, _method='POST'))
-
         if id_det and rep_start and rep_end:
             _sql = provider.get('rep1.sql', id_det=id_det, date_from=rep_start, date_to=rep_end)
             product_result, schema = select(current_app.config['db_config'], _sql)
@@ -58,9 +56,11 @@ def view_rep1():
     if request.method == 'GET' and not request.args:
         return render_template('report1.html', mode="view")
     else:
-        id_det = request.args['id_det'] if request.args['id_det'] else request.form.get('input_id')
-        rep_start = request.args['rep_start'] if request.args['rep_start'] else request.form.get('input_start')
-        rep_end = request.args['rep_end'] if request.args['rep_end'] else request.form.get('input_end')
+        args = request.args
+
+        id_det = args['id_det'] if 'id_det' in args and args['id_det'] else request.form.get('input_id')
+        rep_start = args['rep_start'] if 'rep_start' in args and args['rep_start'] else request.form.get('input_start')
+        rep_end = args['rep_end'] if 'rep_end' in args and args['rep_end'] else request.form.get('input_end')
 
         if id_det and rep_start and rep_end:
             _sql = provider.get('rep1.sql', id_det=id_det, date_from=rep_start, date_to=rep_end)
@@ -70,3 +70,49 @@ def view_rep1():
                                    result=product_result)
         else:
             return render_template('report1.html', mode="view", message="Некорректный ввод!")
+
+@blueprint_report.route('/create_rep2', methods=['GET', 'POST'])
+@group_required
+def create_rep2():
+    if request.method == 'GET':
+        return render_template('report2.html', mode="create")
+    else:
+        rep_start = request.form.get('input_start')
+        rep_end = request.form.get('input_end')
+
+        if rep_start and rep_end:
+            _sql = provider.get('rep2.sql', date_from=rep_start, date_to=rep_end)
+            product_result, schema = select(current_app.config['db_config'], _sql)
+
+            if not product_result:
+                res = call_proc(current_app.config['db_config'], 'client_report', rep_start, rep_end)
+
+                return render_template('report_created.html', to_url=url_for('bp_report.view_rep2',
+                                                                             rep_start=rep_start, rep_end=rep_end))
+            else:
+                return redirect(url_for('bp_report.view_rep2', rep_start=rep_start, rep_end=rep_end))
+        else:
+            return render_template('report2.html', mode="create", message="Некорректный ввод!")
+
+
+
+@blueprint_report.route('/view_rep2', methods=['GET', 'POST'])
+@group_required
+def view_rep2():
+    if request.method == 'GET' and not request.args:
+        return render_template('report2.html', mode="view")
+    else:
+        args = request.args
+
+        rep_start = args['rep_start'] if 'rep_start' in args and args['rep_start'] else request.form.get('input_start')
+        rep_end = args['rep_end'] if 'rep_end' in args and args['rep_end'] else request.form.get('input_end')
+
+        if rep_start and rep_end:
+            _sql = provider.get('rep2.sql', date_from=rep_start, date_to=rep_end)
+            product_result, schema = select(current_app.config['db_config'], _sql)
+
+            return render_template('result_rep.html', schema=[current_app.config['fields_name'][i] for i in schema],
+                                   result=product_result)
+        else:
+            return render_template('report2.html', mode="view", message="Некорректный ввод!")
+

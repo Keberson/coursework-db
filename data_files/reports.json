@@ -6,5 +6,13 @@
       "create_rep": "bp_report.create_rep1",
       "view_rep": "bp_report.view_rep1"
     }
+  },
+  {
+    "rep_name": "Отчет о покупателе, купившем на наибольшую сумма за период",
+    "rep_id": "2",
+    "url": {
+      "create_rep": "bp_report.create_rep2",
+      "view_rep": "bp_report.view_rep2"
+    }
   }
 ]
