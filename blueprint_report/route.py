@@ -71,6 +71,7 @@ def view_rep1():
         else:
             return render_template('report1.html', mode="view", message="Некорректный ввод!")
 
+
 @blueprint_report.route('/create_rep2', methods=['GET', 'POST'])
 @group_required
 def create_rep2():
@@ -95,7 +96,6 @@ def create_rep2():
             return render_template('report2.html', mode="create", message="Некорректный ввод!")
 
 
-
 @blueprint_report.route('/view_rep2', methods=['GET', 'POST'])
 @group_required
 def view_rep2():
@@ -115,4 +115,3 @@ def view_rep2():
                                    result=product_result)
         else:
             return render_template('report2.html', mode="view", message="Некорректный ввод!")
-
