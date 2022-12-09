@@ -6,6 +6,7 @@ from access import group_required
 from blueprint_query.route import blueprint_query
 from auth.route import blueprint_auth
 from blueprint_report.route import blueprint_report
+from basket.route_cache import blueprint_order
 from typing import List, Callable
 
 app = Flask(__name__)
@@ -14,8 +15,10 @@ app.secret_key = 'SuperKey'
 app.register_blueprint(blueprint_auth, url_prefix='/auth')
 app.register_blueprint(blueprint_query, url_prefix='/queries')
 app.register_blueprint(blueprint_report, url_prefix='/report')
+app.register_blueprint(blueprint_order, url_prefix='/order')
 
 app.config['db_config'] = json.load(open('data_files/dbconfig.json'))
+app.config['cache_config'] = json.load(open('data_files/cache.json'))
 app.config['access_config'] = json.load(open('data_files/access.json'))
 app.config['fields_name'] = json.load(open('data_files/fields.json', encoding='UTF-8'))
 app.config['queries_list'] = json.load(open('data_files/queries.json', encoding='UTF-8'))
