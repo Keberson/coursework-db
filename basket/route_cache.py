@@ -60,6 +60,7 @@ def delete_from_basket():
     curr_basket.pop(request.args['id_detail'])
     session['basket'] = curr_basket
     session.permanent = True
+
     return redirect(url_for('bp_order.order_index'))
 
 
@@ -106,7 +107,7 @@ def save_order():
         session.pop('basket')
         return render_template('order_created.html', order_id=order_id, items=items, total=total)
     else:
-        return 'ERROR'  # TODO
+        return render_template('error.html')
 
 
 def save_order_with_list(dbconfig: dict, user_id: int, current_basket: dict):
