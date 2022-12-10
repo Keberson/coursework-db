@@ -26,7 +26,6 @@ def start_report():
 
 
 @blueprint_report.route('/create_rep1', methods=['GET', 'POST'])
-@group_required
 def create_rep1():
     if request.method == 'GET':
         return render_template('report1.html', mode="create")
@@ -51,7 +50,6 @@ def create_rep1():
 
 
 @blueprint_report.route('/view_rep1', methods=['GET', 'POST'])
-@group_required
 def view_rep1():
     if request.method == 'GET' and not request.args:
         return render_template('report1.html', mode="view")
@@ -73,7 +71,6 @@ def view_rep1():
 
 
 @blueprint_report.route('/create_rep2', methods=['GET', 'POST'])
-@group_required
 def create_rep2():
     if request.method == 'GET':
         return render_template('report2.html', mode="create")
@@ -97,7 +94,6 @@ def create_rep2():
 
 
 @blueprint_report.route('/view_rep2', methods=['GET', 'POST'])
-@group_required
 def view_rep2():
     if request.method == 'GET' and not request.args:
         return render_template('report2.html', mode="view")

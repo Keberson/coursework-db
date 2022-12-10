@@ -1,0 +1,1 @@
+INSERT detail VALUES(NULL, '$detail_name', '$detail_material', '$detail_weight', '$detail_price', '$detail_quantity', NOW())

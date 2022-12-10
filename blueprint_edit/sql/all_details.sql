@@ -1,0 +1,1 @@
+SELECT id_detail, name, material, weight, price FROM detail

@@ -4,9 +4,6 @@
     "bp_report"
   ],
   "manager": [
-    "bp_details.edit"
-  ],
-  "buyer": [
-    "bp_details.list"
+    "bp_edit"
   ]
 }

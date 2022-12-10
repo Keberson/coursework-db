@@ -61,3 +61,6 @@ class DBConnection:
             self.conn.close()
             self.cursor.close()
         return True
+
+    def commit(self):
+        self.conn.commit()

@@ -1,13 +1,14 @@
 import json
 
 from flask import Flask, render_template, session, url_for, redirect
+from typing import List, Callable
 
-from access import group_required
+from access import group_required, login_required
 from blueprint_query.route import blueprint_query
 from auth.route import blueprint_auth
 from blueprint_report.route import blueprint_report
 from basket.route_cache import blueprint_order
-from typing import List, Callable
+from blueprint_edit.route import blueprint_edit
 
 app = Flask(__name__)
 app.secret_key = 'SuperKey'
@@ -16,6 +17,7 @@ app.register_blueprint(blueprint_auth, url_prefix='/auth')
 app.register_blueprint(blueprint_query, url_prefix='/queries')
 app.register_blueprint(blueprint_report, url_prefix='/report')
 app.register_blueprint(blueprint_order, url_prefix='/order')
+app.register_blueprint(blueprint_edit, url_prefix='/edit')
 
 app.config['db_config'] = json.load(open('data_files/dbconfig.json'))
 app.config['cache_config'] = json.load(open('data_files/cache.json'))
@@ -48,7 +50,7 @@ def menu_choice():
 
 
 @app.route('/exit')
-def exit_func():
+def exit_handler():
     login = session.get('user_login')
 
     if 'user_id' in session:
@@ -71,5 +73,6 @@ def add_blueprint_access_handler(f_app: Flask, blueprint_names: List[str], handl
 
 
 if __name__ == '__main__':
-    app = add_blueprint_access_handler(app, ['bp_report'], group_required)
+    app = add_blueprint_access_handler(app, ['bp_report', 'bp_query', 'bp_edit'], group_required)
+    app = add_blueprint_access_handler(app, ['bp_report', 'bp_query', 'bp_order', 'bp_edit'], login_required)
     app.run(host='127.0.0.1', port=5001)
