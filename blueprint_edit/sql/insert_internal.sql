@@ -1,0 +1,1 @@
+INSERT internal_user VALUES(NULL, '$input_group', '$input_login', '$input_password')

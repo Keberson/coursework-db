@@ -50,8 +50,14 @@
                    href="{{ url_for('bp_report.start_report') }}">Отчеты</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {% if 'edit' in url_for(request.endpoint) %} active {% endif %}" aria-current="page"
-                   href="{{ url_for('bp_edit.all_products') }}">Редактирование</a>
+                 <a class="nav-link dropdown-toggle {% if 'queries' in url_for(request.endpoint) %} active {% endif %}"
+                   href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Редактирование
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item" href="{{ url_for('bp_edit.all_products') }}">Детали</a></li>
+                  <li><a class="dropdown-item" href="{{ url_for('bp_edit.all_internals')}}">Внутренние пользователи</a></li>
+                </ul>
               </li>
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="{{ url_for('exit_handler') }}">Выйти</a>

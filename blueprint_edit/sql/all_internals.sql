@@ -1,0 +1,1 @@
+SELECT user_id, user_group, login, password FROM internal_user
