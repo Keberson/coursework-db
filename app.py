@@ -46,7 +46,7 @@ def menu_choice():
         else:
             return render_template('external_user_menu.html', user=session.get('user_login'))
     else:
-        return redirect(url_for('blueprint_auth.start_auth'))
+        return redirect(url_for('bp_auth.start_auth'))
 
 
 @app.route('/exit')
