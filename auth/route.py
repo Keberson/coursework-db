@@ -65,21 +65,36 @@ def register():
         login = request.form.get('login')
         password = request.form.get('password')
         repeat_password = request.form.get('repeat_password')
+        name = request.form.get('nameClient')
+        city = request.form.get('cityClient')
+        phone = request.form.get('phoneClient')
 
-        if login and password and repeat_password and password == repeat_password:
+        if login and password and repeat_password and password == repeat_password and name and city and phone:
             db_config = current_app.config['db_config']
 
             with DBConnection(db_config) as cursor:
                 if cursor is None:
                     raise ValueError('Курсор не создан')
 
-                _sql = provider.get('create_external.sql', login=login, password=password)
-                result = cursor.execute(_sql)
+                _sql1 = provider.get('create_client.sql', nameClient=name, city=city, phone=phone)
+                result = cursor.execute(_sql1)
 
                 if result:
-                    toast_type = 'success'
-                    toast_title = 'Успешно'
-                    toast_message = 'Пользователь создан'
+                    _sql2 = provider.get('select_client.sql', nameClient=name, city=city, phone=phone)
+                    cursor.execute(_sql2)
+                    client_id = cursor.fetchall()[0][0]
+
+                    _sql3 = provider.get('create_external.sql', login=login, password=password, client_id=client_id)
+                    result = cursor.execute(_sql3)
+
+                    if result:
+                        toast_type = 'success'
+                        toast_title = 'Успешно'
+                        toast_message = 'Пользователь создан'
+                    else:
+                        toast_type = 'danger'
+                        toast_title = 'Ошибка'
+                        toast_message = 'Что-то пошло не так'
                 else:
                     toast_type = 'danger'
                     toast_title = 'Ошибка'

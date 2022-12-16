@@ -16,6 +16,21 @@
                name="repeat_password">
         <label for="floatingPasswordRepeat">Повторите пароль</label>
     </div>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="nameClient" placeholder="Повторите пароль"
+               name="nameClient">
+        <label for="nameClient">Имя</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="cityClient" placeholder="Повторите пароль"
+               name="cityClient">
+        <label for="cityClient">Город</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="tel" class="form-control" id="phoneClient" placeholder="Повторите пароль"
+               name="phoneClient">
+        <label for="phoneClient">Номер телефона</label>
+    </div>
     <button class="btn btn-primary col-4" type="submit">Создать аккаунт</button>
 </form>
 <a href="{{ url_for('bp_auth.start_auth') }}" class="mt-5">Войти</a>
