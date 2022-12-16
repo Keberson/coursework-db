@@ -133,4 +133,8 @@ def save_order_with_list(dbconfig: dict, user_id: int, current_basket: dict):
                                          amount=amount)
                     cursor.execute(_sql3)
 
+                    amount = current_basket[key]['quantity_available'] - amount
+                    _sql4 = provider.get('update_item.sql', id_detail=key, amount=amount)
+                    cursor.execute(_sql4)
+
                 return order_id

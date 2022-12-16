@@ -1,0 +1,1 @@
+UPDATE detail SET quantity_available = '$amount' WHERE id_detail = '$id_detail'
