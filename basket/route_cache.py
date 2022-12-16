@@ -2,7 +2,7 @@ import datetime
 import os
 from flask import Blueprint, render_template, request, current_app, session, redirect, url_for
 from db_context_manager import DBConnection
-from db_work import select_dict
+from db_work import select_dict, call_proc
 from sql_provider import SQLProvider
 from cache.wrapper import fetch_from_cache
 
@@ -135,5 +135,7 @@ def save_order_with_list(dbconfig: dict, user_id: int, current_basket: dict):
                     _sql3 = provider.get('insert_order_list.sql', order_id=order_id, detail_id=key,
                                          amount=amount)
                     cursor.execute(_sql3)
+
+                res = call_proc(current_app.config['db_config'], 'refresh', order_id)
 
                 return order_id
