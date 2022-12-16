@@ -99,6 +99,10 @@ def clear_basket():
 def save_order():
     user_id = session.get('user_id')
     current_basket = session.get('basket', {})
+
+    if len(current_basket) == 0:
+        return render_template('error.html')
+
     order_id = save_order_with_list(current_app.config['db_config'], user_id, current_basket)
 
     if order_id:

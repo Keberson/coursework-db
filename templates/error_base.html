@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body class="h-100 m-0 p-0 w-100 bg-light" style="display:flex; justify-content: center; align-items: center">
-  <div class="card p-5 gap-5">
+  <div class="card p-5 gap-5 text-center">
     {% block content %}{% endblock %}
     <a href="{{ url_for('menu_choice') }}" class="btn btn-danger">Нажмите для возврата в главное меню</a>
   </div>

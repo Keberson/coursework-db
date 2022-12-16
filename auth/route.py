@@ -30,9 +30,12 @@ def start_auth():
 
                 return redirect(url_for('menu_choice'))
             else:
-                return render_template('login.html', message='Пользователь не найден')
+                toast_message = 'Пользователь не найден'
+        else:
+            toast_message = 'Повторите ввод'
 
-        return render_template('login.html', message='Повторите ввод')
+    return render_template('login.html', show_toast=True, toast_type='danger',
+                           toast_title='Ошибка', toast_message=toast_message)
 
 
 def define_user(login: str, password: str) -> Optional[Dict]:
