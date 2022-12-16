@@ -1,1 +1,1 @@
-insert user_orders values(NULL, '$user_id', NOW())
+INSERT user_orders VALUES(NULL, '$user_id', NOW())

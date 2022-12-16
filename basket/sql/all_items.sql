@@ -1,1 +1,1 @@
-select id_detail, name, material, weight, price, quantity_available from detail
+SELECT id_detail, name, material, weight, price, quantity_available FROM detail
