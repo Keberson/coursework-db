@@ -1,1 +1,1 @@
-SELECT max(order_id) AS max_is FROM user_orders WHERE user_id = '$user_id'
+SELECT max(id_document) AS max_is FROM document WHERE id_client = '$user_id'

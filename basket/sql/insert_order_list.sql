@@ -1,1 +1,1 @@
-INSERT orders_list VALUES (NULL, '$order_id', '$detail_id', '$amount')
+INSERT line VALUES (NULL, '$amount', '$detail_id', '$order_id')

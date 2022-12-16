@@ -1,1 +1,1 @@
-INSERT user_orders VALUES(NULL, '$user_id', NOW())
+INSERT document VALUES(NULL, NOW(), '$costs', '$user_id')

@@ -118,7 +118,10 @@ def save_order_with_list(dbconfig: dict, user_id: int, current_basket: dict):
     with DBConnection(dbconfig) as cursor:
         if cursor is None:
             raise ValueError('Курсор не создан')
-        _sql1 = provider.get('insert_order.sql', user_id=user_id)
+
+        items = [item for item in current_basket.values()]
+        total = sum([item['amount'] * item['price'] for item in items])
+        _sql1 = provider.get('insert_order.sql', user_id=user_id, costs=total)
         result1 = cursor.execute(_sql1)
 
         if result1 == 1:
@@ -132,9 +135,5 @@ def save_order_with_list(dbconfig: dict, user_id: int, current_basket: dict):
                     _sql3 = provider.get('insert_order_list.sql', order_id=order_id, detail_id=key,
                                          amount=amount)
                     cursor.execute(_sql3)
-
-                    amount = current_basket[key]['quantity_available'] - amount
-                    _sql4 = provider.get('update_item.sql', id_detail=key, amount=amount)
-                    cursor.execute(_sql4)
 
                 return order_id
