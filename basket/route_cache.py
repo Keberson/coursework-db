@@ -3,8 +3,7 @@ from flask import Blueprint, render_template, request, current_app, session, red
 from db_context_manager import DBConnection
 from db_work import select_dict, call_proc
 from sql_provider import SQLProvider
-from cache.wrapper import fetch_from_cache
-
+from cache.wrapper import fetch_from_cache, fetch_from_cache_force
 
 blueprint_order = Blueprint('bp_order', __name__, template_folder='templates', static_folder='static')
 provider = SQLProvider(os.path.join(os.path.dirname(__file__), 'sql'))
@@ -109,6 +108,11 @@ def save_order():
         items = [item for item in current_basket.values()]
         total = sum([item['amount'] * item['price'] for item in items])
         session.pop('basket')
+
+        sql = provider.get('all_items.sql')
+        res = fetch_from_cache_force('all_items_cached', current_app.config['cache_config'])(select_dict)(
+            current_app.config['db_config'], sql)
+
         return render_template('order_created.html', order_id=order_id, items=items, total=total)
     else:
         return render_template('error.html')
