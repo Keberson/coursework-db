@@ -172,7 +172,7 @@ def all_internals():
                     toast_type = 'primary'
 
             db_config = current_app.config['db_config']
-            _sql = provider.get('all_internal.sql')
+            _sql = provider.get('all_internals.sql')
             items = select_dict(db_config, _sql)
 
             return render_template('all_internals.html', items=items, show_toast=True, toast_title=toast_title,
