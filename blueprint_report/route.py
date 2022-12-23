@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from flask import *
 from db_work import select, call_proc
 from access import login_required, group_required
@@ -34,7 +36,9 @@ def create_rep1():
         rep_start = request.form.get('input_start')
         rep_end = request.form.get('input_end')
 
-        if id_det and rep_start and rep_end:
+        if id_det and rep_start and rep_end and \
+                datetime.strptime(rep_end, '%Y-%m-%d') >= datetime.strptime(rep_start, '%Y-%m-%d'):
+
             _sql = provider.get('rep1.sql', id_det=id_det, date_from=rep_start, date_to=rep_end)
             product_result, schema = select(current_app.config['db_config'], _sql)
 
@@ -78,7 +82,7 @@ def create_rep2():
         rep_start = request.form.get('input_start')
         rep_end = request.form.get('input_end')
 
-        if rep_start and rep_end:
+        if rep_start and rep_end and datetime.strptime(rep_end, '%Y-%m-%d') >= datetime.strptime(rep_start, '%Y-%m-%d'):
             _sql = provider.get('rep2.sql', date_from=rep_start, date_to=rep_end)
             product_result, schema = select(current_app.config['db_config'], _sql)
 
