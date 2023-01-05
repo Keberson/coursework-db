@@ -41,6 +41,11 @@ At a small enterprise, information about the *sales history* of parts is also sa
 + Redis
 + BootStrap5
 
+### Database schema
+
+!["DB"](https://github.com/Keberson/coursework-db/blob/master/docs/db.png?raw=true)
+
+
 ### Project files:
 + `auth` - Authorization and Registration section
 + `basket` - Directory section for external user (client)
@@ -57,6 +62,13 @@ At a small enterprise, information about the *sales history* of parts is also sa
 + `requirements.txt` - List of required libraries and frameworks, as well as their versions
 + `sql_provider.py` - Processing sql files
 
+Every blueprint-folder consist of:
++ ``sql/`` includes a list of all sql queries
++ ``templates/`` includes a list of all html pages and jinja-templates
++ ``route.py`` describes the logic of the server part of current blueprint
+
+### About blueprints
++ [Authentication](docs/auth/README.md)
 
 ## Run
 
