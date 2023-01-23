@@ -70,6 +70,7 @@ Every blueprint-folder consist of:
 ### About blueprints
 + [Authentication](docs/auth/README.md)
 + [Basket](docs/basket/README.md)
++ [Queries](docs/query/README.md)
 
 ## Run
 
