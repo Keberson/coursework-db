@@ -45,5 +45,5 @@ Page with complex queries:
 
 Results page:
 
-!["Result"](https://github.com/Keberson/coursework-db/blob/master/docs/query/result.png?raw=true)**
+!["Result"](https://github.com/Keberson/coursework-db/blob/master/docs/query/res.png?raw=true)
 
