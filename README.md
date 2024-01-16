@@ -78,6 +78,3 @@ To run this app use:
 
 ```pip install```
 ```python3 app.py```
-
-## Author
-- Telegram - [@Keberson](https://www.t.me/Keberson)
